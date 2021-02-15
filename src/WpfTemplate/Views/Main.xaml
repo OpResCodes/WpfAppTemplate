@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="WpfTemplate.Views.Main"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:base="clr-namespace:WpfTemplate.Views.Base"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d"
+             d:DesignHeight="900"
+             d:DesignWidth="1200"
+             d:DataContext="{Binding Source={StaticResource Locator},Path=MainViewmodel}"
+             Background="{StaticResource DefaultBackgroundColor}">
+
+    <telerik:RadBusyIndicator x:Name="BusyOverlay"
+                              IsBusy="{Binding IsBusy}"
+                              IsIndeterminate="{Binding HideProgressWhenBusy}"
+                              ProgressValue="{Binding CurrentProcessProgress}">
+        <StackPanel x:Name="LayoutRoot"
+                    Width="800"
+                    HorizontalAlignment="Left">
+            <TextBlock Text="{Binding Title}"
+                       FontSize="42"
+                       Margin="5 10"
+                       FontFamily="Segoe UI Light" />
+            <DockPanel x:Name="UpperPanel"
+                       LastChildFill="True"
+                       Margin="5 10">
+                <StackPanel DockPanel.Dock="Left"
+                            Margin="0 0 15 0">
+                    <StackPanel.Resources>
+                        <Style TargetType="telerik:RadButton" BasedOn="{StaticResource RadButtonStyle}">
+                            <Setter Property="Height"
+                                    Value="40" />
+                            <Setter Property="Width" Value="120" />
+                            <Setter Property="Margin" Value="0 10" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <telerik:RadButton Content="Popup"
+                                       Command="{Binding ShowPopupCommand}" />
+                    <telerik:RadButton Content="Exception"
+                                       Command="{Binding MakeErrorCommand}" />
+                    <telerik:RadButton Content="Long Task"
+                                       Command="{Binding ShowProgressPopup}" />
+                    <telerik:RadButton Content="Busy Overlay"
+                                       Command="{Binding TestBusyOverlayCommand}" />
+                    <telerik:RadButton Content="Busy+Progress"
+                                       Command="{Binding TestBusyOverlayWithProgressCommand}" 
+                                       ToolTip="RadBusyIndicator is between 0 and 100!"/>
+                </StackPanel>
+                <Border DockPanel.Dock="Left"
+                        Margin="5 10"
+                        BorderBrush="{StaticResource Metro_DarkBlue}"
+                        BorderThickness="1">
+                    <base:SimpleChart x:Name="ExampleChart"
+                                      Margin="0"
+                                      Height="300"
+                                      HorizontalAlignment="Stretch"
+                                      DockPanel.Dock="Top"
+                                      DataContext="{Binding SimpleChart}" />
+                </Border>
+            </DockPanel>
+            <TextBlock Text="Log Viewer"
+                       DockPanel.Dock="Bottom"
+                       Margin="5 10"
+                       FontSize="24" />
+            <base:LogView Margin="5 10"
+                          HorizontalAlignment="Left"
+                          DockPanel.Dock="Bottom"
+                          Height="250"
+                          Width="{Binding ElementName=UpperPanel,Path=ActualWidth}" />
+
+        </StackPanel>
+    </telerik:RadBusyIndicator>
+</UserControl>

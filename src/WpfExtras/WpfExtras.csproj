@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>WpfExtras</PackageId>
+    <Authors>Matthes Koch</Authors>
+    <Version>1.0.4</Version>
+    <PackageProjectUrl>https://simnopt.net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/OpResCodes/WpfExtras</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageTags>WPF</PackageTags>
+    <Description>
+      WPF Colors,Resources and Controls that I typically include in WPF projects
+    </Description>
+      <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>    
+    <IncludeSymbols>true</IncludeSymbols>
+  </PropertyGroup>
+  
+</Project>

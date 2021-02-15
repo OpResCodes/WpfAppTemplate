@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:WpfTemplate.ViewModel"
+                    xmlns:v="clr-namespace:WpfTemplate.Views"
+                    xmlns:dialog="clr-namespace:WpfTemplate.Dialogs"
+                    xmlns:baseViewmodels="clr-namespace:WpfTemplate.ViewModel.Base"
+                    xmlns:baseViews="clr-namespace:WpfTemplate.Views.Base">
+
+    <!-- Viewmodel Mapping -->
+    <DataTemplate DataType="{x:Type vm:VmMain}">
+        <v:Main />
+    </DataTemplate>
+    <DataTemplate DataType="baseViewmodels:VmSimpleChart">
+        <baseViews:SimpleChart />
+    </DataTemplate>
+
+    <!-- Default Dialog Windows/Popups -->
+    <DataTemplate DataType="{x:Type dialog:VmUserPopup}">
+        <dialog:DefaultUserPopUpView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type dialog:VmProgressReport}">
+        <dialog:DefaultProgressReportPopup />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type dialog:VmUserConfirmation}">
+        <dialog:DefaultUserConfirmationDialogView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type dialog:VmErrorPopup}">
+        <baseViews:ExceptionView />
+    </DataTemplate>
+
+    <!-- Log Viewer -->
+    <DataTemplate DataType="baseViewmodels:VmLogViewer">
+        <baseViews:LogView></baseViews:LogView>
+    </DataTemplate>
+
+</ResourceDictionary>

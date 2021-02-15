@@ -1,0 +1,358 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ChangeTracking.Wpf"
+                    xmlns:behaviors="clr-namespace:WpfExtras.Behaviors"
+                    xmlns:wpfExtras="clr-namespace:WpfExtras"
+                    xmlns:behaviors1="clr-namespace:WpfExtras.Behaviors;assembly=WpfExtras">
+
+    <SolidColorBrush x:Key="DefaultHighlightColor"
+                     Color="#ffc40d" />
+    <SolidColorBrush x:Key="DefaultBackgroundColor"
+                     Color="White" />
+    <SolidColorBrush x:Key="DefaultForeGroundColor"
+                     Color="Black" />
+    <SolidColorBrush x:Key="DefaultAlertColor"
+                     Color="#ee1111" />
+    <SolidColorBrush x:Key="DefaultBorderColor"
+                     Color="Black" />
+
+    <!-- Changebehaviors on controls-->
+
+    <!-- Checkbox -->
+    <Style x:Key="CheckBoxWithChanges"
+           TargetType="CheckBox"
+           BasedOn="{StaticResource {x:Type CheckBox}}">
+        <Setter Property="behaviors:ChangeBehavior.IsActive"
+                Value="True" />
+        <Setter Property="behaviors:ChangeBehavior.OriginalValueConverter"
+                Value="{wpfExtras:OriginalValueStringConverter}" />
+        <Style.Triggers>
+            <Trigger Property="behaviors:ChangeBehavior.IsChanged"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{StaticResource DefaultHighlightColor}" />
+                <Setter Property="ToolTip">
+                    <Setter.Value>
+                        <ToolTip Background="{StaticResource DefaultBackgroundColor}"
+                                 BorderBrush="{StaticResource DefaultHighlightColor}"
+                                 DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource Mode=Self}}"
+                                 Height="Auto"
+                                 Width="Auto">
+                            <TextBlock Text="{Binding Path=(behaviors:ChangeBehavior.OriginalValue)}" />
+                        </ToolTip>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Validation.HasError"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{StaticResource DefaultAlertColor}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Combobox with Change Tracking -->
+    <Style TargetType="{x:Type ComboBox}"
+           BasedOn="{StaticResource {x:Type ComboBox}}">
+        <Setter Property="Height"
+                Value="30" />
+        <Setter Property="MinWidth"
+                Value="100" />
+        <Setter Property="Margin"
+                Value="2" />
+        <Setter Property="Foreground"
+                Value="{StaticResource DefaultForeGroundColor}" />
+        <Setter Property="Background"
+                Value="{StaticResource DefaultBackgroundColor}" />
+        <Setter Property="BorderBrush"
+                Value="{StaticResource DefaultBorderColor}" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+    </Style>
+
+    <Style TargetType="ComboBox"
+           x:Key="ComboBoxWithChanges"
+           BasedOn="{StaticResource {x:Type ComboBox}}">
+        <Setter Property="behaviors:ChangeBehavior.IsActive"
+                Value="True" />
+        <Setter Property="behaviors:ChangeBehavior.OriginalValueConverter"
+                Value="{wpfExtras:ComboBoxOriginalValueConverter}" />
+        <Style.Triggers>
+            <Trigger Property="behaviors:ChangeBehavior.IsChanged"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{StaticResource DefaultHighlightColor}" />
+                <Setter Property="ToolTip">
+                    <Setter.Value>
+                        <ToolTip Background="{StaticResource DefaultBackgroundColor}"
+                                 BorderBrush="{StaticResource DefaultHighlightColor}"
+                                 DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource Mode=Self}}"
+                                 Height="Auto"
+                                 Width="Auto">
+                            <TextBlock Text="{Binding Path=(behaviors:ChangeBehavior.OriginalValue)}" />
+                        </ToolTip>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Validation.HasError"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{StaticResource DefaultAlertColor}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--<Style TargetType="telerik:RadComboBox"
+           x:Key="RadComboBoxWithChanges"
+           BasedOn="{StaticResource RadComboBoxStyle}">
+        <Setter Property="b:ChangeBehavior.IsActive"
+                Value="True" />
+        <Setter Property="b:ChangeBehavior.OriginalValueConverter"
+                Value="{cv:ComboBoxOriginalValueConverter}" />
+        <Style.Triggers>
+            <Trigger Property="b:ChangeBehavior.IsChanged"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{StaticResource DefaultHighlightColor}" />
+                <Setter Property="ToolTip">
+                    <Setter.Value>
+                        <ToolTip Background="{StaticResource DefaultBackgroundColor}"
+                                 BorderBrush="{StaticResource DefaultHighlightColor}"
+                                 DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource Mode=Self}}"
+                                 Height="Auto"
+                                 Width="Auto">
+                            <TextBlock Text="{Binding Path=(b:ChangeBehavior.OriginalValue)}" />
+                        </ToolTip>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Validation.HasError"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{StaticResource DefaultAlertColor}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>-->
+
+    <ControlTemplate x:Key="DefaultErrorTemplate">
+        <StackPanel Orientation="Horizontal">
+            <AdornedElementPlaceholder x:Name="placeholder" />
+            <Viewbox Height="{Binding ElementName=placeholder,Path=ActualHeight}"
+                     VerticalAlignment="Center"
+                     Margin="3,0">
+                <Border Background="{StaticResource DefaultAlertColor}"
+                        BorderBrush="Black"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Width="20"
+                        Height="20"
+                        ToolTip="{Binding ElementName=placeholder,Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"
+                        ToolTipService.InitialShowDelay="0">
+                    <TextBlock Text="!"
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="0"
+                               Padding="0" />
+                </Border>
+            </Viewbox>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="StackedErrorTemplate">
+        <DockPanel>
+            <Border Background="{StaticResource DefaultAlertColor}"
+                    Width="{Binding ElementName=placeholder,Path=ActualWidth}"
+                    DockPanel.Dock="Top"
+                    BorderBrush="Black"
+                    BorderThickness="1">
+                <TextBlock HorizontalAlignment="Left"
+                           Text="{Binding ElementName=placeholder,Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"></TextBlock>
+            </Border>
+            <AdornedElementPlaceholder x:Name="placeholder"
+                                       DockPanel.Dock="Top" />
+        </DockPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ErrorInsideErrorTemplate">
+        <Grid>
+            <AdornedElementPlaceholder x:Name="placeholder" />
+            <Viewbox Height="{Binding ElementName=placeholder,Path=ActualHeight}"
+                     VerticalAlignment="Top"
+                     HorizontalAlignment="Right"
+                     Margin="3,0">
+                <Border Background="{StaticResource DefaultAlertColor}"
+                        CornerRadius="10"
+                        Width="20"
+                        Height="20"
+                        BorderBrush="Black"
+                        BorderThickness="1"
+                        ToolTip="{Binding ElementName=placeholder,Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"
+                        ToolTipService.InitialShowDelay="0">
+                    <TextBlock Text="!"
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+                </Border>
+            </Viewbox>
+        </Grid>
+    </ControlTemplate>
+
+    <!--This activates the dynamic databinding for the IsChanged and OriginalValue properties -->
+    <Style TargetType="{x:Type Control}"
+           x:Key="ControlBaseStyle">
+        <!-- Should display a little warning on validation errors -->
+        <Setter Property="Validation.ErrorTemplate"
+                Value="{StaticResource DefaultErrorTemplate}" />
+        <Setter Property="behaviors:ChangeBehavior.IsActive"
+                Value="True" />
+        <Setter Property="Foreground"
+                Value="{StaticResource DefaultForeGroundColor}" />
+        <Setter Property="Background"
+                Value="{StaticResource DefaultBackgroundColor}" />
+        <Setter Property="behaviors:ChangeBehavior.OriginalValueConverter"
+                Value="{wpfExtras:OriginalValueStringConverter}" />
+        <Style.Triggers>
+            <Trigger Property="behaviors:ChangeBehavior.IsChanged"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{StaticResource DefaultHighlightColor}" />
+                <Setter Property="ToolTip">
+                    <Setter.Value>
+                        <ToolTip Background="{StaticResource DefaultBackgroundColor}"
+                                 BorderBrush="{StaticResource DefaultHighlightColor}"
+                                 DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource Mode=Self}}"
+                                 Height="Auto"
+                                 Width="Auto">
+                            <TextBlock Text="{Binding Path=(behaviors:ChangeBehavior.OriginalValue)}" />
+                        </ToolTip>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+
+            <Trigger Property="Validation.HasError"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{StaticResource DefaultAlertColor}" />
+                <!--<Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self},Path=(Validation.Errors)[0].ErrorContent}" />-->
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="DataGridWithChangeBehavior"
+           TargetType="{x:Type DataGrid}">
+        <Setter Property="behaviors:DataGridChangedBehavior.IsActive"
+                Value="True" />
+        <Setter Property="behaviors1:ColumnAutoGenerationBehavior.IsActive"
+                Value="True" />
+        <!--<Setter Property="Validation.ErrorTemplate"
+                Value="{StaticResource StackedErrorTemplate}" />-->
+    </Style>
+
+    <Style TargetType="{x:Type DatePicker}">
+        <Setter Property="Validation.ErrorTemplate"
+                Value="{StaticResource DefaultErrorTemplate}" />
+        <Setter Property="behaviors:ChangeBehavior.IsActive"
+                Value="True" />
+        <Setter Property="Foreground"
+                Value="{StaticResource DefaultForeGroundColor}" />
+        <Setter Property="Background"
+                Value="{StaticResource DefaultBackgroundColor}" />
+        <Setter Property="behaviors:ChangeBehavior.OriginalValueConverter"
+                Value="{wpfExtras:DatePickerOriginalValueConverter}" />
+        <Style.Triggers>
+            <Trigger Property="behaviors:ChangeBehavior.IsChanged"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{StaticResource DefaultHighlightColor}" />
+                <Setter Property="ToolTip">
+                    <Setter.Value>
+                        <ToolTip Background="{StaticResource DefaultBackgroundColor}"
+                                 BorderBrush="{StaticResource DefaultHighlightColor}"
+                                 DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource Mode=Self}}"
+                                 Height="Auto"
+                                 Width="Auto">
+                            <TextBlock Text="{Binding Path=(behaviors:ChangeBehavior.OriginalValue)}" />
+                        </ToolTip>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+
+            <Trigger Property="Validation.HasError"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{StaticResource DefaultAlertColor}" />
+                <!--<Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self},Path=(Validation.Errors)[0].ErrorContent}" />-->
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="TextBlockWithChanges"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="behaviors:ChangeBehavior.IsActive"
+                Value="True" />
+        <Setter Property="behaviors:ChangeBehavior.OriginalValueConverter"
+                Value="{wpfExtras:OriginalValueStringConverter}" />
+        <Style.Triggers>
+            <Trigger Property="behaviors:ChangeBehavior.IsChanged"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{StaticResource DefaultHighlightColor}" />
+                <Setter Property="ToolTip">
+                    <Setter.Value>
+                        <ToolTip Background="{StaticResource DefaultBackgroundColor}"
+                                 BorderBrush="{StaticResource DefaultBorderColor}"
+                                 DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource Mode=Self}}"
+                                 Height="Auto"
+                                 Width="Auto">
+                            <TextBlock Text="{Binding Path=(behaviors:ChangeBehavior.OriginalValue)}" />
+                        </ToolTip>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Validation.HasError"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{StaticResource DefaultAlertColor}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="TextBoxWithChanges"
+           TargetType="TextBox"
+           BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="behaviors:ChangeBehavior.IsActive"
+                Value="True" />
+        <Setter Property="behaviors:ChangeBehavior.OriginalValueConverter"
+                Value="{wpfExtras:OriginalValueStringConverter}" />
+        <Setter Property="Validation.ErrorTemplate"
+                Value="{StaticResource DefaultErrorTemplate}" />
+        <Style.Triggers>
+            <Trigger Property="behaviors:ChangeBehavior.IsChanged"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{StaticResource DefaultHighlightColor}" />
+                <Setter Property="Foreground"
+                        Value="{StaticResource Metro_Darken}" />
+                <Setter Property="ToolTip">
+                    <Setter.Value>
+                        <ToolTip Background="{StaticResource DefaultBackgroundColor}"
+                                 BorderBrush="{StaticResource DefaultBorderColor}"
+                                 DataContext="{Binding Path=PlacementTarget, RelativeSource={RelativeSource Mode=Self}}"
+                                 Height="Auto"
+                                 Width="Auto">
+                            <TextBlock Text="{Binding Path=(behaviors:ChangeBehavior.OriginalValue)}" />
+                        </ToolTip>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Validation.HasError"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{StaticResource DefaultAlertColor}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

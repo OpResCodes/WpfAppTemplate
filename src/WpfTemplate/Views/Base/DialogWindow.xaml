@@ -1,0 +1,18 @@
+﻿<Window x:Class="WpfTemplate.Dialogs.DialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
+        ShowInTaskbar="True"
+        WindowStartupLocation="CenterOwner"
+        Title="Dialog"
+        BorderBrush="Black" BorderThickness="1"
+        WindowStyle="None"
+        d:DesignHeight="200" d:DesignWidth="400">
+
+    <ContentPresenter x:Name="DialogPresenter" />
+
+</Window>

@@ -1,0 +1,44 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WpfExtras">
+
+
+    <SolidColorBrush x:Key="Metro_LightGreen"
+                     Color="#99b433" />
+    <SolidColorBrush x:Key="Metro_Green"
+                     Color="#00a300" />
+    <SolidColorBrush x:Key="Metro_DarkGreen"
+                     Color="#1e7145" />
+    <SolidColorBrush x:Key="Metro_Magent"
+                     Color="#ff0097" />
+    <SolidColorBrush x:Key="Metro_LightPurple"
+                     Color="#9f00a7" />
+    <SolidColorBrush x:Key="Metro_Purple"
+                     Color="#7e3878" />
+    <SolidColorBrush x:Key="Metro_DarkPurple"
+                     Color="#603cba" />
+    <SolidColorBrush x:Key="Metro_Darken"
+                     Color="#1d1d1d" />
+    <SolidColorBrush x:Key="Metro_Teal"
+                     Color="#00aba9" />
+    <SolidColorBrush x:Key="Metro_LightBlue"
+                     Color="#eff4ff" />
+    <SolidColorBrush x:Key="Metro_Blue"
+                     Color="#2d89ef" />
+    <SolidColorBrush x:Key="Metro_DarkBlue"
+                     Color="#2b5797" />
+    <SolidColorBrush x:Key="Metro_Yellow"
+                     Color="#ffc40d" />
+    <SolidColorBrush x:Key="Metro_Orange"
+                     Color="#e3a21a" />
+    <SolidColorBrush x:Key="Metro_DarkOrange"
+                     Color="#da532c" />
+    <SolidColorBrush x:Key="Metro_Red"
+                     Color="#ee1111" />
+    <SolidColorBrush x:Key="Metro_DarkRed"
+                     Color="#b91d47" />
+    <SolidColorBrush x:Key="Metro_White"
+                     Color="#ffffff" />
+
+
+</ResourceDictionary>

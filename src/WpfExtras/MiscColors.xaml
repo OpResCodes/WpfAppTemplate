@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="MatCol_VisionGray"
+                     Color="#3d4c4f" />
+
+    <SolidColorBrush x:Key="MatCol_Tuerkis"
+                     Color="#79d4e6" />
+
+    <SolidColorBrush x:Key="Uhh_Red"
+                     Color="#e2001a" />
+    
+    <SolidColorBrush x:Key="Uhh_blau"
+                     Color="#0271bb" />
+
+    <SolidColorBrush x:Key="Uhh_gray"
+                     Color="#3b515b" />
+
+</ResourceDictionary>

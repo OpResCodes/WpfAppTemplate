@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="UiModelWrapping\T4GenerationTemplate.cs" />
+    <Compile Remove="UiModelWrapping\T4GenerationTemplateVm.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="UiModelWrapping\T4GenerationTemplate.txt" />
+    <None Remove="UiModelWrapping\T4GenerationTemplateVm.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WpfExtras\WpfExtras.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+</Project>

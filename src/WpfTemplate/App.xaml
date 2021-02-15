@@ -1,0 +1,35 @@
+﻿<Application x:Class="WpfTemplate.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:util="clr-namespace:WpfTemplate.Utilities"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"            
+             xmlns:ignore="http://www.galasoft.ch/ignore"
+             StartupUri="Views/MainWindow.xaml"             
+             mc:Ignorable="d ignore" >
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--Global View Model Locator-->
+            <util:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
+            <sys:Double x:Key="DefaultFontSize">14</sys:Double>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Skins/MainSkin.xaml" />
+                <ResourceDictionary Source="/WpfExtras;component/MetroColors.xaml" />
+                <ResourceDictionary Source="/WpfExtras;component/Icons.xaml"/>
+                <ResourceDictionary Source="/WpfExtras;component/MiscColors.xaml" />
+                <ResourceDictionary Source="/WpfExtras;component/ButtonStyles.xaml" />
+                <!-- Mapping of Viewmodel to View -->
+                <ResourceDictionary Source="Views/Vm2View.xaml" />
+
+                <!-- Telerik Styles -->
+                <ResourceDictionary Source="/Telerik.Windows.Themes.VisualStudio2019;component/Themes/System.Windows.xaml" />
+                <ResourceDictionary Source="/Telerik.Windows.Themes.VisualStudio2019;component/Themes/Telerik.Windows.Controls.xaml" />
+                <ResourceDictionary Source="/Telerik.Windows.Themes.VisualStudio2019;component/Themes/Telerik.Windows.Controls.Input.xaml" />
+                <ResourceDictionary Source="/Telerik.Windows.Themes.VisualStudio2019;component/Themes/Telerik.Windows.Controls.GridView.xaml" />
+                <ResourceDictionary Source="/Telerik.Windows.Themes.VisualStudio2019;component/Themes/telerik.windows.controls.data.xaml" />
+                <ResourceDictionary Source="/Telerik.Windows.Themes.VisualStudio2019;component/Themes/telerik.windows.controls.chart.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

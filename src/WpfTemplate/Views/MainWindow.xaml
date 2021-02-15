@@ -1,0 +1,22 @@
+﻿<Window x:Class="WpfTemplate.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.galasoft.ch/ignore"
+        xmlns:WpfExtras="http://simnopt.net"
+        mc:Ignorable="d ignore"
+        Height="800"
+        Width="900"
+        WindowStartupLocation="CenterScreen"
+        Title="Windows Application"
+        Background="{StaticResource DefaultBackgroundColor}"
+        DataContext="{Binding Source={StaticResource Locator}}">
+
+    <Grid x:Name="LayoutRoot">
+        <WpfExtras:AnimatedContentControl x:Name="MainContent"
+                                          Margin="10"
+                                          Content="{Binding ActiveEditor,Mode=OneWay}" />
+
+    </Grid>
+</Window>
